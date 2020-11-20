@@ -31,6 +31,7 @@
 #include "ufo/filters/TrackCheckShip.h"
 #include "ufo/gnssro/QC/BackgroundCheckRONBAM.h"
 #include "ufo/gnssro/QC/ROobserror.h"
+#include "ufo/filters/PracticalBoundsCheck.h"
 
 namespace ufo {
 template<typename MODEL> void instantiateObsFilterFactory() {
@@ -83,6 +84,8 @@ template<typename MODEL> void instantiateObsFilterFactory() {
            legacyGaussianThinningMaker("Gaussian_Thinning");
   static oops::FilterMaker<MODEL, oops::ObsFilter<MODEL, ufo::TemporalThinning> >
            legacyTemporalThinningMaker("TemporalThinning");
+    static oops::FilterMaker<MODEL, oops::ObsFilter<MODEL, ufo::PracticalBoundsCheck> >
+     practicalBoundsCheckMaker("Practical Bounds Check");
 }
 
 }  // namespace ufo
